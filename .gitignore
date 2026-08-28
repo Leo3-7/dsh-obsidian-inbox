@@ -12,3 +12,7 @@ Thumbs.db
 # Local env / overrides (keep the skill itself; ignore personal config if any)
 .env
 *.local
+
+# npm auth — never commit tokens / registries
+.npmrc
+.npmrc.*
