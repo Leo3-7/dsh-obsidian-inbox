@@ -1,5 +1,7 @@
 # obsidian-inbox
 
+> **English / 英文**: [README.en.md](README.en.md)
+
 把 DeepSeek Harness（DSH）对话里值得长期保存的结论、解释、错题、想法，按一套确定性的流程整理进 Obsidian 知识库的 DSH **技能（skill）**。
 
 ## 这是什么
