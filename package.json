@@ -1,0 +1,36 @@
+{
+  "name": "dsh-obsidian-inbox",
+  "version": "0.1.0",
+  "description": "Obsidian knowledge-base ingest workflow as a DeepSeek Harness skill, delivered as a bundled skill provider plugin.",
+  "type": "module",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "skills",
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-skill": "^0.1.1-rc.2"
+  },
+  "dependencies": {
+    "yaml": "^2.5.0"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "skills",
+    "obsidian",
+    "knowledge-base"
+  ],
+  "license": "MIT"
+}

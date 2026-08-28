@@ -16,18 +16,41 @@
 
 ## 目录结构
 
+这是一个 **DSH 插件（`dsh.bundle` skill-pack）**，可安装进任意 profile：
+
 ```
-obsidian-inbox/
-├── SKILL.md                       # 技能说明（DSH 加载的入口）
-└── scripts/
-    └── validate-vault.mjs         # vault 两级确定性校验脚本（Node.js）
+dsh-obsidian-inbox/
+├── package.json                   # dsh.bundle → cordis.patch.yml；main → lib/index.js
+├── lib/index.js                   # 插件本体：把 skills/ 注册进 ctx.skills
+├── cordis.patch.yml               # 激活该插件（insert 一行）
+├── skills/obsidian-inbox/
+│   ├── SKILL.md                   # 技能说明（DSH 加载的入口）
+│   └── scripts/
+│       └── validate-vault.mjs     # vault 两级确定性校验脚本（Node.js）
+├── README.md / README.en.md
+├── LICENSE
+└── .gitignore
 ```
 
 ## 在 DSH 里使用
 
-1. 把这个仓库克隆到本地（或直接把 `SKILL.md` 与 `scripts/` 拷进你的技能目录）。
-2. 在 DSH 的 `skill-filesystem` 插件里添加该目录到 `customSkillDirs`（或放进 `$DSH_HOME/skills/<name>/`）。
-3. 在会话里说触发词即可触发，例如：**「整理入库」「保存这个结论」「记录为错题」「记录为项目」「更新已有笔记」**。
+**方式 A：作为插件安装（推荐）**
+
+```bash
+dsh plugin --profile web add https://github.com/Leo3-7/dsh-obsidian-inbox
+# 或按你的实际 profile 名调整：dsh plugin --profile <name> add <上面URL>
+```
+
+安装后插件会把自己的 `skills/obsidian-inbox/` 注册为 `bundled` 技能，模型目录里即可看到。
+
+**方式 B：直接把技能目录拷进 DSH 的技能目录**
+
+```bash
+# 把 skills/obsidian-inbox/ 放到 $DSH_HOME/skills/ 下，或加到
+# skill-filesystem 的 customSkillDirs
+```
+
+在会话里说触发词即可触发，例如：**「整理入库」「保存这个结论」「记录为错题」「记录为项目」「更新已有笔记」**。
 
 ## 配置 / 个性化
 
@@ -39,6 +62,7 @@ obsidian-inbox/
 ## 校验脚本
 
 ```bash
+# 在 skills/obsidian-inbox/ 目录下运行
 # 校验默认 vault（D:/Obsidian/MyKnowledgeBase）
 node scripts/validate-vault.mjs
 
