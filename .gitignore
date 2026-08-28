@@ -1,0 +1,14 @@
+# Node
+node_modules/
+*.log
+npm-debug.log*
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local env / overrides (keep the skill itself; ignore personal config if any)
+.env
+*.local
