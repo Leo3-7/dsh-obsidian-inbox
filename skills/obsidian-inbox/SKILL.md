@@ -6,12 +6,12 @@ description: "Obsidian 知识库整理入库：判断授权、检索已有笔记
 # Obsidian 知识库入库流程
 
 > 本技能由 `dsh-obsidian-inbox` 插件提供。**vault 路径与主目录分类由插件配置决定**：
-> vault 路径来自插件 Config 的 `defaultVault`（默认 `D:/Obsidian/MyKnowledgeBase`，可在插件配置里改），
+> vault 路径来自插件 Config 的 `defaultVault`（**默认空**，需在插件配置里设为你的库路径），
 > 主目录分类需按你自己的库调整（见下文）。
 
 ## 唯一 vault（不可变）
 
-- vault 路径：**插件配置 `defaultVault`**（默认 `D:/Obsidian/MyKnowledgeBase`）。用**工具** `obsidian_validate_vault` 校验时可传 `vault` 参数覆盖。
+- vault 路径：**插件配置 `defaultVault`**（默认空，需配置为你的库路径）。用**工具** `obsidian_validate_vault` 校验时可传 `vault` 参数覆盖。
 - 路径不存在或无权限时立即停止，不自动创建另一个库。
 - 授权只针对相关笔记；不修改 Obsidian 设置、不安装插件、不整理整个库。
 

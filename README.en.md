@@ -65,7 +65,7 @@ Use a trigger phrase in the conversation, e.g. **"整理入库" (file this away)
 
 This skill is the author's personal workflow and has **environment-specific** settings you should adjust for your own vault:
 
-- **Vault path**: resolved from the plugin `Config.defaultVault` (default `D:/Obsidian/MyKnowledgeBase`); override it in the plugin config, or pass a `vault` argument to `obsidian_validate_vault`.
+- **Vault path**: resolved from the plugin `Config.defaultVault` (default empty — set it to your own vault path); override it in the plugin config, or pass a `vault` argument to `obsidian_validate_vault`.
 - **Main folder categories**: `00_收件箱 / 01_考研 / 02_AI与编程 / 03_智能制造 / 04_项目 / 05_想法 / 06_错题 / 07_对话精华` — replace these with your own folder structure.
 
 ## Validation (plugin tool)
@@ -73,7 +73,7 @@ This skill is the author's personal workflow and has **environment-specific** se
 Validation is a **model-facing tool `obsidian_validate_vault`** exposed by the plugin (not a shell script). Call it in the conversation:
 
 ```text
-obsidian_validate_vault                    # uses the plugin config defaultVault (D:/Obsidian/MyKnowledgeBase)
+obsidian_validate_vault                    # uses the plugin config defaultVault (needs your Config.defaultVault set)
 obsidian_validate_vault (vault: "...")     # validate a specific vault
 ```
 

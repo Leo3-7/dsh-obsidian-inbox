@@ -1,6 +1,6 @@
 {
   "name": "dsh-obsidian-inbox",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Obsidian knowledge-base ingest workflow as a DeepSeek Harness plugin: a bundled skill provider + an obsidian_validate_vault model tool, all declarative and composable.",
   "homepage": "https://github.com/Leo3-7/dsh-obsidian-inbox",
   "repository": {
@@ -12,8 +12,7 @@
     "url": "https://github.com/Leo3-7/dsh-obsidian-inbox/issues"
   },
   "author": {
-    "name": "Leo3-7",
-    "email": "zhy56381@gmail.com"
+    "name": "Leo3-7"
   },
   "engines": {
     "node": ">=18"

@@ -65,7 +65,7 @@ dsh plugin --profile web add https://github.com/Leo3-7/dsh-obsidian-inbox
 
 本技能是作者个人的整理流程，有**环境相关**的两处需要按你自己的库修改：
 
-- **vault 路径**：由插件 `Config.defaultVault` 决定（默认 `D:/Obsidian/MyKnowledgeBase`），可在插件配置里改；用 `obsidian_validate_vault` 校验时可传 `vault` 参数覆盖。
+- **vault 路径**：由插件 `Config.defaultVault` 决定（默认空，需设为你的库路径）；用 `obsidian_validate_vault` 校验时可传 `vault` 参数覆盖。
 - **主目录分类**：`00_收件箱 / 01_考研 / 02_AI与编程 / 03_智能制造 / 04_项目 / 05_想法 / 06_错题 / 07_对话精华` —— 换成你自己的目录结构。
 
 ## 校验（插件工具）
@@ -73,7 +73,7 @@ dsh plugin --profile web add https://github.com/Leo3-7/dsh-obsidian-inbox
 校验是插件暴露的**模型工具 `obsidian_validate_vault`**（不是 shell 脚本），在对话里调用即可：
 
 ```text
-obsidian_validate_vault                    # 用插件配置 defaultVault（默认 D:/Obsidian/MyKnowledgeBase）
+obsidian_validate_vault                    # 用插件配置 defaultVault（需先设为你的库路径）
 obsidian_validate_vault (vault: "...")     # 校验指定 vault
 ```
 
