@@ -36,21 +36,27 @@ dsh-obsidian-inbox/
 
 ## 在 DSH 里使用
 
-**方式 A：作为插件安装（推荐）**
+**方式 A：npm 安装（推荐，已发布到 npm）**
+
+```bash
+dsh plugin --profile web add dsh-obsidian-inbox
+# 或按你的实际 profile 名调整：dsh plugin --profile <name> add dsh-obsidian-inbox
+```
+
+**方式 B：GitHub 源码安装（备选）**
 
 ```bash
 dsh plugin --profile web add https://github.com/Leo3-7/dsh-obsidian-inbox
-# 或按你的实际 profile 名调整：dsh plugin --profile <name> add <上面URL>
 ```
 
-安装后插件会把自己的 `skills/obsidian-inbox/` 注册为 `bundled` 技能，模型目录里即可看到。
-
-**方式 B：直接把技能目录拷进 DSH 的技能目录**
+**方式 C：直接把技能目录拷进 DSH 的技能目录**
 
 ```bash
 # 把 skills/obsidian-inbox/ 放到 $DSH_HOME/skills/ 下，或加到
 # skill-filesystem 的 customSkillDirs
 ```
+
+任一种安装后，插件都会把 `skills/obsidian-inbox/` 注册为 `bundled` 技能，模型目录里即可看到；库校验走 `obsidian_validate_vault` 工具。
 
 在会话里说触发词即可触发，例如：**「整理入库」「保存这个结论」「记录为错题」「记录为项目」「更新已有笔记」**。
 
@@ -58,7 +64,7 @@ dsh plugin --profile web add https://github.com/Leo3-7/dsh-obsidian-inbox
 
 本技能是作者个人的整理流程，有**环境相关**的两处需要按你自己的库修改：
 
-- **vault 路径**：默认 `D:\Obsidian\MyKnowledgeBase`（在 `SKILL.md` 的「唯一 vault」节，以及 `scripts/validate-vault.mjs` 的默认参数）。改成你自己的库即可。
+- **vault 路径**：由插件 `Config.defaultVault` 决定（默认 `D:/Obsidian/MyKnowledgeBase`），可在插件配置里改；用 `obsidian_validate_vault` 校验时可传 `vault` 参数覆盖。
 - **主目录分类**：`00_收件箱 / 01_考研 / 02_AI与编程 / 03_智能制造 / 04_项目 / 05_想法 / 06_错题 / 07_对话精华` —— 换成你自己的目录结构。
 
 ## 校验（插件工具）

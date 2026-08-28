@@ -36,21 +36,27 @@ dsh-obsidian-inbox/
 
 ## Using it in DSH
 
-**Option A: install as a plugin (recommended)**
+**Option A: install from npm (recommended, published to npm)**
+
+```bash
+dsh plugin --profile web add dsh-obsidian-inbox
+# or adjust the profile name: dsh plugin --profile <name> add dsh-obsidian-inbox
+```
+
+**Option B: install from GitHub source (fallback)**
 
 ```bash
 dsh plugin --profile web add https://github.com/Leo3-7/dsh-obsidian-inbox
-# or adjust the profile name: dsh plugin --profile <name> add <the URL above>
 ```
 
-Installing registers `skills/obsidian-inbox/` as a `bundled` skill exposed to the model catalog.
-
-**Option B: copy the skill directory into DSH's skills dir**
+**Option C: copy the skill directory into DSH's skills dir**
 
 ```bash
 # place skills/obsidian-inbox/ under $DSH_HOME/skills/, or add it to
 # the skill-filesystem plugin's customSkillDirs
 ```
+
+Any of these registers `skills/obsidian-inbox/` as a `bundled` skill in the model catalog; vault validation goes through the `obsidian_validate_vault` tool.
 
 Use a trigger phrase in the conversation, e.g. **"整理入库" (file this away)**, **"保存这个结论" (save this conclusion)**, **"记录为错题" (log this mistake)**, **"记录为项目" (log this project)**, **"更新已有笔记" (update an existing note)**.
 
@@ -58,7 +64,7 @@ Use a trigger phrase in the conversation, e.g. **"整理入库" (file this away)
 
 This skill is the author's personal workflow and has **environment-specific** settings you should adjust for your own vault:
 
-- **Vault path**: defaults to `D:\Obsidian\MyKnowledgeBase` (in the `SKILL.md` "Single vault" section and as the `validate-vault.mjs` default argument). Point it at your own vault.
+- **Vault path**: resolved from the plugin `Config.defaultVault` (default `D:/Obsidian/MyKnowledgeBase`); override it in the plugin config, or pass a `vault` argument to `obsidian_validate_vault`.
 - **Main folder categories**: `00_收件箱 / 01_考研 / 02_AI与编程 / 03_智能制造 / 04_项目 / 05_想法 / 06_错题 / 07_对话精华` — replace these with your own folder structure.
 
 ## Validation (plugin tool)
