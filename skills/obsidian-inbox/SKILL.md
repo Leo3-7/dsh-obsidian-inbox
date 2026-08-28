@@ -5,12 +5,13 @@ description: "Obsidian 知识库整理入库：判断授权、检索已有笔记
 
 # Obsidian 知识库入库流程
 
-> 注意：本技能为作者个人整理流程，**vault 路径与主目录分类需按你自己的库配置**。
-> 下面是作者默认值，请替换为你自己的路径与目录结构后再使用。
+> 本技能由 `dsh-obsidian-inbox` 插件提供。**vault 路径与主目录分类由插件配置决定**：
+> vault 路径来自插件 Config 的 `defaultVault`（默认 `D:/Obsidian/MyKnowledgeBase`，可在插件配置里改），
+> 主目录分类需按你自己的库调整（见下文）。
 
 ## 唯一 vault（不可变）
 
-- vault 路径：**改这里** —— 作者默认为 `D:\Obsidian\MyKnowledgeBase`（也是 `scripts/validate-vault.mjs` 的默认参数，可用第 2 个参数覆盖）。
+- vault 路径：**插件配置 `defaultVault`**（默认 `D:/Obsidian/MyKnowledgeBase`）。用**工具** `obsidian_validate_vault` 校验时可传 `vault` 参数覆盖。
 - 路径不存在或无权限时立即停止，不自动创建另一个库。
 - 授权只针对相关笔记；不修改 Obsidian 设置、不安装插件、不整理整个库。
 
@@ -81,11 +82,14 @@ description: "Obsidian 知识库整理入库：判断授权、检索已有笔记
 - `[[Wiki Links]]` 目标存在。
 - 无同名笔记导致的链接歧义。
 
-校验命令（在仓库根目录运行；第 2 个参数传入 vault 路径，可省略用默认）：
+校验方式（用**插件工具**，不是 shell 脚本）：
 
 ```text
-node scripts/validate-vault.mjs [vaultRoot]
+obsidian_validate_vault  → 校验当前配置的 defaultVault
+obsidian_validate_vault  (vault: "D:/your/vault")  → 校验指定 vault
 ```
+
+返回 `{ ok, noteCount, problems }`；`ok=false` 时逐条修复并重跑直到通过，校验不通过不得宣布“已入库”。
 
 ## 第七步：验证失败不能冒充成功
 

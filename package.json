@@ -1,7 +1,7 @@
 {
   "name": "dsh-obsidian-inbox",
-  "version": "0.1.0",
-  "description": "Obsidian knowledge-base ingest workflow as a DeepSeek Harness skill, delivered as a bundled skill provider plugin.",
+  "version": "0.2.0",
+  "description": "Obsidian knowledge-base ingest workflow as a DeepSeek Harness plugin: a bundled skill provider + an obsidian_validate_vault model tool, all declarative and composable.",
   "type": "module",
   "main": "lib/index.js",
   "files": [
@@ -19,7 +19,9 @@
   },
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.1",
-    "@deepseek-ai/dsh-skill": "^0.1.1-rc.2"
+    "@deepseek-ai/dsh-skill": "^0.1.1-rc.2",
+    "@deepseek-ai/dsh-tools": "^0.1.1-rc.2",
+    "@deepseek-ai/schemastery": "^3.18.0"
   },
   "dependencies": {
     "yaml": "^2.5.0"

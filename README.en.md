@@ -21,16 +21,18 @@ This is a **DSH plugin (`dsh.bundle` skill-pack)** installable into any profile:
 ```
 dsh-obsidian-inbox/
 ├── package.json                   # dsh.bundle → cordis.patch.yml; main → lib/index.js
-├── lib/index.js                   # plugin body: registers skills/ on ctx.skills
+├── lib/
+│   ├── index.js                   # plugin body: registers bundled skill + obsidian_validate_vault tool
+│   └── validate.js                # two-level validation logic (plugin-owned, shared)
 ├── cordis.patch.yml               # activates the plugin (one insert row)
 ├── skills/obsidian-inbox/
-│   ├── SKILL.md                   # skill description (DSH entry point)
-│   └── scripts/
-│       └── validate-vault.mjs     # two-level vault validation script (Node.js)
+│   └── SKILL.md                   # skill description (DSH entry point)
 ├── README.md / README.en.md
 ├── LICENSE
 └── .gitignore
 ```
+
+> Every capability is provided by the plugin: the skill is registered on `ctx.skills` as a `bundled` provider, the validation is registered on `ctx.tools` as the `obsidian_validate_vault` model tool, and the vault path comes from the plugin's declarative `Config.defaultVault` — no loose shell scripts or hardcoded paths.
 
 ## Using it in DSH
 
@@ -59,16 +61,16 @@ This skill is the author's personal workflow and has **environment-specific** se
 - **Vault path**: defaults to `D:\Obsidian\MyKnowledgeBase` (in the `SKILL.md` "Single vault" section and as the `validate-vault.mjs` default argument). Point it at your own vault.
 - **Main folder categories**: `00_收件箱 / 01_考研 / 02_AI与编程 / 03_智能制造 / 04_项目 / 05_想法 / 06_错题 / 07_对话精华` — replace these with your own folder structure.
 
-## Validation script
+## Validation (plugin tool)
 
-```bash
-# run from the skills/obsidian-inbox/ directory
-# Validate the default vault (D:/Obsidian/MyKnowledgeBase)
-node scripts/validate-vault.mjs
+Validation is a **model-facing tool `obsidian_validate_vault`** exposed by the plugin (not a shell script). Call it in the conversation:
 
-# Validate a specific vault
-node scripts/validate-vault.mjs D:/your/vault
+```text
+obsidian_validate_vault                    # uses the plugin config defaultVault (D:/Obsidian/MyKnowledgeBase)
+obsidian_validate_vault (vault: "...")     # validate a specific vault
 ```
+
+It returns `{ ok, noteCount, problems }`; when `ok=false`, it lists formula / JSON / Wiki link / duplicate-name issues one by one. The single implementation lives in `lib/validate.js`, shared by the tool and any optional CLI.
 
 Exit code: `0` = passed; `1` = problems found (lists formula / JSON / Wiki link / duplicate-name issues one by one).
 

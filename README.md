@@ -21,16 +21,18 @@
 ```
 dsh-obsidian-inbox/
 ├── package.json                   # dsh.bundle → cordis.patch.yml；main → lib/index.js
-├── lib/index.js                   # 插件本体：把 skills/ 注册进 ctx.skills
+├── lib/
+│   ├── index.js                   # 插件本体：注册 bundled 技能 + obsidian_validate_vault 工具
+│   └── validate.js                # 两级确定性校验逻辑（插件所有，工具/复用同一实现）
 ├── cordis.patch.yml               # 激活该插件（insert 一行）
 ├── skills/obsidian-inbox/
-│   ├── SKILL.md                   # 技能说明（DSH 加载的入口）
-│   └── scripts/
-│       └── validate-vault.mjs     # vault 两级确定性校验脚本（Node.js）
+│   └── SKILL.md                   # 技能说明（DSH 加载的入口）
 ├── README.md / README.en.md
 ├── LICENSE
 └── .gitignore
 ```
+
+> 一切能力都由插件提供：技能经 `ctx.skills` 注册为 `bundled` provider，校验经 `ctx.tools` 注册为模型工具 `obsidian_validate_vault`，vault 路径由插件 `Config.defaultVault` 声明式配置——没有散落的裸脚本或硬编码路径。
 
 ## 在 DSH 里使用
 
@@ -59,16 +61,16 @@ dsh plugin --profile web add https://github.com/Leo3-7/dsh-obsidian-inbox
 - **vault 路径**：默认 `D:\Obsidian\MyKnowledgeBase`（在 `SKILL.md` 的「唯一 vault」节，以及 `scripts/validate-vault.mjs` 的默认参数）。改成你自己的库即可。
 - **主目录分类**：`00_收件箱 / 01_考研 / 02_AI与编程 / 03_智能制造 / 04_项目 / 05_想法 / 06_错题 / 07_对话精华` —— 换成你自己的目录结构。
 
-## 校验脚本
+## 校验（插件工具）
 
-```bash
-# 在 skills/obsidian-inbox/ 目录下运行
-# 校验默认 vault（D:/Obsidian/MyKnowledgeBase）
-node scripts/validate-vault.mjs
+校验是插件暴露的**模型工具 `obsidian_validate_vault`**（不是 shell 脚本），在对话里调用即可：
 
-# 校验指定 vault
-node scripts/validate-vault.mjs D:/your/vault
+```text
+obsidian_validate_vault                    # 用插件配置 defaultVault（默认 D:/Obsidian/MyKnowledgeBase）
+obsidian_validate_vault (vault: "...")     # 校验指定 vault
 ```
+
+返回 `{ ok, noteCount, problems }`，`ok=false` 时逐条列出公式 / JSON / Wiki 链接 / 同名歧义问题。实现集中在 `lib/validate.js`，工具与（可选）CLI 复用同一份逻辑。
 
 退出码：`0` = 通过；`1` = 发现问题（会逐条列出公式 / JSON / Wiki 链接 / 同名歧义问题）。
 
