@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none">
+  <rect width="256" height="256" rx="56" fill="#0b1220"/>
+  <!-- Obsidian-style crystal -->
+  <g transform="translate(118,112)">
+    <path d="M0,-64 L56,-18 L34,66 L-34,66 L-56,-18 Z" stroke="#60a5fa" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M-56,-18 L56,-18" stroke="#60a5fa" stroke-width="9"/>
+    <path d="M0,-64 L0,66" stroke="#60a5fa" stroke-width="9"/>
+    <path d="M-56,-18 L0,66 M56,-18 L0,66" stroke="#60a5fa" stroke-width="9"/>
+  </g>
+  <!-- validation check -->
+  <path d="M64,176 l20,22 40,-50" stroke="#4ade80" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
