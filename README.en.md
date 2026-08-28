@@ -1,6 +1,7 @@
 # obsidian-inbox
 
 > **中文 / Chinese**: [README.md](README.md)
+> [![npm version](https://img.shields.io/npm/v/dsh-obsidian-inbox.svg)](https://www.npmjs.com/package/dsh-obsidian-inbox) · `dsh-obsidian-inbox` · [GitHub](https://github.com/Leo3-7/dsh-obsidian-inbox)
 
 A **DeepSeek Harness (DSH) skill** that files the conclusions, explanations, mistakes, and ideas worth keeping from a DSH conversation into an **Obsidian vault** — through a deterministic, 7-step workflow.
 

@@ -1,6 +1,7 @@
 # obsidian-inbox
 
 > **English / 英文**: [README.en.md](README.en.md)
+> [![npm version](https://img.shields.io/npm/v/dsh-obsidian-inbox.svg)](https://www.npmjs.com/package/dsh-obsidian-inbox) · `dsh-obsidian-inbox` · [GitHub](https://github.com/Leo3-7/dsh-obsidian-inbox)
 
 把 DeepSeek Harness（DSH）对话里值得长期保存的结论、解释、错题、想法，按一套确定性的流程整理进 Obsidian 知识库的 DSH **技能（skill）**。
 
